@@ -9,3 +9,16 @@ task :console do
   # Open a Pry session
   Pry.start
 end
+
+
+desc "start terminal app in console"
+task :c do
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  ARGV.clear
+  cols = Rake.application.terminal_width
+  system "clear"
+  puts "*" * cols
+  puts "        Welcome to Rake Console".center(cols, "*")
+  puts "*" * cols
+  Pry.start
+end
